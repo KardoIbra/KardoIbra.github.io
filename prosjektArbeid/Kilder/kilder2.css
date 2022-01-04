@@ -1,0 +1,273 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Zen Antique Soft", serif;
+  scroll-behavior: smooth;
+}
+body {
+  background-color: hsl(37, 38%, 46%);
+}
+/* forste seksjon, navigansjonslinker og introduksjon.*/
+
+.første_seksjon {
+  min-height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.1)),
+    url(../pictures/Takkforopperksomheten.jpeg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.navigasjon {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 10vh;
+}
+
+.navigasjons_linker {
+  display: flex;
+  justify-content: space-around;
+  width: 40%;
+}
+
+.navigasjons_linker a {
+  color: rgb(226, 226, 226);
+  font-weight: bold;
+  font-size: 20px;
+  text-decoration: none;
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.navigasjons_linker a:after {
+  content: "";
+  position: absolute;
+  background-color: rgba(241, 102, 10, 0.856);
+  height: 3.1px;
+  width: 0;
+  left: 0;
+  bottom: -9px;
+  transition: 0.3s;
+}
+.navigasjons_linker a:hover {
+  color: rgb(255, 255, 255);
+}
+
+.navigasjons_linker a:hover:after {
+  width: 100%;
+}
+
+.navigasjons_linker li {
+  list-style: none;
+}
+
+.menulinjer {
+  display: none;
+  cursor: pointer;
+}
+
+.menulinjer div {
+  width: 30px;
+  height: 3.5px;
+  margin: 6px;
+  background-color: rgb(250, 246, 246);
+  transition: 0.4s ease;
+}
+
+/* Responsiv brukopplevelse på mobil/mindre skjermstørrelser */
+
+@media screen and (max-width: 1170px) {
+  .navigasjons_linker {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .navigasjons_linker {
+    position: absolute;
+    right: 0;
+    height: 90vh;
+    top: 10vh;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(135, 207, 235, 0.377);
+    align-items: center;
+    width: 35%;
+    transform: translateX(100%);
+    transition: transform 0.5s ease-in;
+  }
+
+  .navigasjons_linker li {
+    opacity: 0;
+  }
+  .menulinjer {
+    display: block;
+  }
+}
+/* Responsiv brukopplevelse på mobil/mindre skjermstørrelser */
+
+.navigasjons_hendleser {
+  transform: translateX(0%);
+}
+
+@keyframes navigasjonslinkensfade {
+  /* vi kan legge til andre animasjoner her, og det vil fungere */
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+.linjemenu .linje1 {
+  transform: rotate(-50deg) translate(-6px, 8px);
+}
+
+.linjemenu .linje2 {
+  opacity: 0;
+}
+
+.linjemenu .linje3 {
+  transform: rotate(50deg) translate(-6px, -8px);
+}
+
+/* forste seksjon, navigansjonslinker.*/
+
+/* kildeseksjon */
+
+.table-container {
+  padding: 0 10%;
+  margin: 40px;
+}
+.Overskrift {
+  font-size: 39px;
+  text-align: center;
+  color: #050505c0;
+  margin-bottom: 40px;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table thead {
+  background-color: rgba(25, 87, 22, 0.938);
+}
+.table thead tr th {
+  font-size: 15px;
+  letter-spacing: 0.4px;
+  color: #ffffff;
+  opacity: 1;
+  padding: 12px;
+  vertical-align: top;
+  border: 1px solid #dee2e685;
+}
+.table tbody tr td {
+  font-size: 14px;
+  letter-spacing: 0.4px;
+  font-weight: normal;
+  color: #f1f1f1;
+  background-color: #3c3f44;
+  padding: 8px;
+  text-align: center;
+  border: 1px solid rgba(25, 87, 22, 0.938);
+}
+.table {
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 0.4px;
+}
+
+.table tbody tr td .knapp {
+  width: 120px;
+  text-decoration: none;
+  line-height: 30px;
+  display: inline-block;
+  background-color: rgba(25, 87, 22, 0.938);
+  color: #ffffff;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  font-size: 13px;
+  opacity: 1;
+}
+.knapp:hover {
+  box-shadow: 2px 10px 10px rgb(255, 252, 252);
+}
+
+@media screen and (max-width: 1000px) {
+  .table thead {
+    display: none;
+  }
+  .table,
+  .table tbody,
+  .table tr,
+  .table td {
+    display: block;
+    width: 100%;
+  }
+  .table tr {
+    margin-bottom: 20px;
+  }
+  .table tbody tr td {
+    text-align: center;
+  }
+}
+
+/* kildeseksjon */
+
+/* <!-- Footerr seksjonen --> */
+footer {
+  text-align: center;
+  background-color: hsl(37, 38%, 46%);
+  display: flex;
+  flex-direction: column;
+}
+
+.referanse {
+  color: rgba(32, 32, 32, 0.76);
+}
+.merinfo {
+  color: rgba(8, 8, 8, 0.753);
+}
+
+.sosial {
+  margin: 30px;
+}
+
+.sosiale_linker {
+  padding: 10px;
+  margin: 20px;
+}
+
+.sosiale_linker a {
+  padding: 12px;
+  border: 2px solid rgb(3, 1, 1);
+  border-radius: 50%;
+  background-color: rgb(3, 2, 3);
+}
+.sosiale_linker a:hover {
+  background-color: rgba(10, 240, 22, 0.61);
+  color: rgb(4, 121, 121);
+  transition: all 0.3s ease;
+}
+
+@media screen and (max-width: 600px) {
+  .referanse {
+    font-size: 20px;
+  }
+  .merinfo {
+    font-size: 18px;
+  }
+}
+/* <!-- Footerr seksjonen --> */

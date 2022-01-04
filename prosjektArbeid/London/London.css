@@ -1,0 +1,314 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Zen Antique Soft", serif;
+  scroll-behavior: smooth;
+}
+body {
+  background-color: hsla(37, 38%, 46%, 0.67);
+}
+/* forste Dubai seksjon, navigansjonslinker og introduksjon.*/
+
+.første_seksjon {
+  min-height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.349), rgba(0, 0, 0, 0.1)),
+    url(../pictures/City-Hall-London.jpeg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.navigasjon {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 10vh;
+  background-color: rgba(135, 207, 235, 0.377);
+}
+
+.navigasjons_linker {
+  display: flex;
+  justify-content: space-around;
+  width: 40%;
+}
+
+.navigasjons_linker a {
+  color: rgb(226, 226, 226);
+  font-weight: bold;
+  font-size: 20px;
+  text-decoration: none;
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.navigasjons_linker a:after {
+  content: "";
+  position: absolute;
+  background-color: rgba(241, 102, 10, 0.856);
+  height: 3.1px;
+  width: 0;
+  left: 0;
+  bottom: -9px;
+  transition: 0.3s;
+}
+.navigasjons_linker a:hover {
+  color: rgb(255, 255, 255);
+}
+
+.navigasjons_linker a:hover:after {
+  width: 100%;
+}
+
+.navigasjons_linker li {
+  list-style: none;
+}
+.London h2 {
+  color: rgb(226, 226, 226);
+  text-align: center;
+  position: relative;
+  top: 150px;
+  font-size: 80px;
+  font-weight: bold;
+  font-variant: small-caps;
+  letter-spacing: 3px;
+}
+
+.menulinjer {
+  display: none;
+  cursor: pointer;
+}
+
+.menulinjer div {
+  width: 30px;
+  height: 3.5px;
+  margin: 6px;
+  background-color: rgb(250, 246, 246);
+  transition: 0.4s ease;
+}
+
+/* Responsiv brukopplevelse på mobil/mindre skjermstørrelser */
+
+@media screen and (max-width: 1170px) {
+  .navigasjons_linker {
+    width: 50%;
+  }
+  .London h1 {
+    font-size: 40px;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .navigasjons_linker {
+    position: absolute;
+    right: 0;
+    height: 90vh;
+    top: 10vh;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(135, 207, 235, 0.377);
+    align-items: center;
+    width: 35%;
+    transform: translateX(100%);
+    transition: transform 0.5s ease-in;
+  }
+
+  .navigasjons_linker li {
+    opacity: 0;
+  }
+  .menulinjer {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .London h2 {
+    font-size: 37px;
+  }
+}
+/* Responsiv brukopplevelse på mobil/mindre skjermstørrelser */
+
+.navigasjons_hendleser {
+  transform: translateX(0%);
+}
+
+@keyframes navigasjonslinkensfade {
+  /* vi kan legge til andre animasjoner her, og det vil fungere */
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+.linjemenu .linje1 {
+  transform: rotate(-50deg) translate(-6px, 8px);
+}
+
+.linjemenu .linje2 {
+  opacity: 0;
+}
+
+.linjemenu .linje3 {
+  transform: rotate(50deg) translate(-6px, -8px);
+}
+.GoogleMaps {
+  position: relative;
+  top: 300px;
+  width: 500px;
+  height: 300px;
+  border-radius: 5%;
+  border: none;
+  box-shadow: 5px 8px 9px rgb(175, 174, 179);
+}
+
+@media screen and (max-width: 1100px) {
+  .GoogleMaps {
+    width: 400px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* forste Dubai seksjon ferdig, navigansjonslinker.*/
+
+/* <!-- Seksjon3 ulike steder man kan besøke i Dubai -->*/
+/* lager en grid, med auto-fit, slik at den er responsiv hele tiden */
+.bager {
+  display: grid;
+  grid-gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+}
+/* lager en grid, med auto-fit, slik at den er responsiv hele tiden */
+
+#seksjon3_main,
+.introforklaring .bager4 {
+  background-color: hsla(37, 38%, 46%, 0.67);
+}
+.Viktigste_protokoller {
+  background-color: hsla(37, 38%, 46%, 0);
+}
+.bag {
+  padding: 45px;
+  text-align: center;
+  align-items: center;
+}
+
+.komponenter {
+  color: rgb(20, 18, 18);
+  text-align: center;
+  font-size: 35px;
+  font-weight: 600;
+  font-style: italic;
+  font-variant: initial;
+}
+
+.introforklaring {
+  font-family: "Zen Antique Soft", serif;
+  margin-top: 7px;
+  font-size: 20px;
+  text-align: center;
+}
+/* justerer alle bilder samtidig */
+.bilder_seksjon3 {
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 30px;
+  background-position: center;
+  box-shadow: 5px 5px 30px rgb(0, 0, 0);
+}
+/* justerer alle bilder samtidig */
+
+/* justerer alle p-elementer samtidig */
+.seksjon3_p_elementer {
+  font-family: "Zen Antique Soft", serif;
+  margin: 30px;
+  font-size: 20px;
+}
+/* justerer alle p-elementer samtidig */
+
+.h2_elementer {
+  color: rgb(20, 18, 18);
+  font-size: 30px;
+  font-weight: 600;
+  font-style: italic;
+  font-variant: small-caps;
+  letter-spacing: 1px;
+  margin: 20px;
+}
+
+@media screen and (max-width: 1100px) {
+  .komponenter {
+    font-size: 30px;
+  }
+  .introforklaring {
+    font-size: 15px;
+  }
+  .seksjon3_p_elementer {
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 280px) {
+  .komponenter {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .komponenter {
+    font-size: 20px;
+  }
+}
+
+/* <!-- Seksjon3 ulike steder man kan besøke i London-->*/
+
+/* <!-- Footerr seksjonen --> */
+
+footer {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.sosial {
+  margin: 30px;
+}
+
+.sosiale_linker {
+  padding: 10px;
+  margin: 20px;
+}
+
+.sosiale_linker a {
+  padding: 12px;
+  border: 2px solid rgb(3, 1, 1);
+  border-radius: 50%;
+  background-color: rgb(3, 2, 3);
+}
+.sosiale_linker a:hover {
+  background-color: rgb(216, 181, 135);
+  color: rgb(4, 121, 121);
+  transition: all 0.5s ease;
+}
+
+@media screen and (max-width: 600px) {
+  .referanse {
+    font-size: 20px;
+  }
+  .merinfo {
+    font-size: 18px;
+  }
+}
+
+/* <!-- Footerr seksjonen --> */

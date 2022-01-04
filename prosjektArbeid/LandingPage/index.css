@@ -1,0 +1,330 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Zen Antique Soft", serif;
+  scroll-behavior: smooth;
+}
+
+/* forste seksjon, navigansjonslinker og introduksjon.*/
+
+.første_seksjon {
+  min-height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.1)),
+    url(../pictures/HawaiiBeach.jpeg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.navigasjon {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 10vh;
+  background-color: rgba(135, 207, 235, 0.377);
+}
+
+.navigasjons_linker {
+  display: flex;
+  justify-content: space-around;
+  width: 40%;
+}
+
+.navigasjons_linker a {
+  color: rgb(226, 226, 226);
+  font-weight: bold;
+  font-size: 20px;
+  text-decoration: none;
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.navigasjons_linker a:after {
+  content: "";
+  position: absolute;
+  background-color: rgba(241, 102, 10, 0.856);
+  height: 3.1px;
+  width: 0;
+  left: 0;
+  bottom: -9px;
+  transition: 0.3s;
+}
+.navigasjons_linker a:hover {
+  color: rgb(255, 255, 255);
+}
+
+.navigasjons_linker a:hover:after {
+  width: 100%;
+}
+
+.navigasjons_linker li {
+  list-style: none;
+}
+.travel h2 {
+  color: rgb(226, 226, 226);
+  text-align: center;
+  position: relative;
+  top: 200px;
+  font-size: 60px;
+  font-weight: bold;
+  font-variant: small-caps;
+  text-shadow: 30px 30px 5px rgb(2, 2, 2);
+}
+
+.menulinjer {
+  display: none;
+  cursor: pointer;
+}
+
+.menulinjer div {
+  width: 30px;
+  height: 3.5px;
+  margin: 6px;
+  background-color: rgb(250, 246, 246);
+  transition: 0.4s ease;
+}
+
+/* Responsiv brukopplevelse på mobil/mindre skjermstørrelser */
+
+@media screen and (max-width: 1170px) {
+  .navigasjons_linker {
+    width: 50%;
+  }
+  .travel h1 {
+    font-size: 40px;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .navigasjons_linker {
+    position: absolute;
+    right: 0;
+    height: 90vh;
+    top: 10vh;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(135, 207, 235, 0.377);
+    align-items: center;
+    width: 35%;
+    transform: translateX(100%);
+    transition: transform 0.5s ease-in;
+  }
+
+  .navigasjons_linker li {
+    opacity: 0;
+  }
+  .menulinjer {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .travel h2 {
+    font-size: 37px;
+  }
+}
+/* Responsiv brukopplevelse på mobil/mindre skjermstørrelser */
+
+.navigasjons_hendleser {
+  transform: translateX(0%);
+}
+
+@keyframes navigasjonslinkensfade {
+  /* vi kan legge til andre animasjoner her, og det vil fungere */
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+.linjemenu .linje1 {
+  transform: rotate(-50deg) translate(-6px, 8px);
+}
+
+.linjemenu .linje2 {
+  opacity: 0;
+}
+
+.linjemenu .linje3 {
+  transform: rotate(50deg) translate(-6px, -8px);
+}
+
+/* forste seksjon, navigansjonslinker.*/
+
+/* andre seksjon */
+
+main {
+  background-color: hsla(37, 38%, 46%, 0.67);
+}
+
+.bager4 {
+  padding: 0px;
+  display: grid;
+  grid-gap: 100px;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+}
+
+.bager4 {
+  padding: 40px;
+  text-align: center;
+}
+.places {
+  color: rgb(20, 18, 18);
+  text-align: center;
+  font-size: 35px;
+  margin-bottom: 60px;
+  font-weight: 600;
+  font-style: italic;
+  font-variant: initial;
+  letter-spacing: 1px;
+  position: relative;
+  top: 70px;
+}
+
+.bilder_seksjon2 {
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 30px;
+  background-position: center;
+  box-shadow: 5px 5px 30px rgb(0, 0, 0);
+}
+
+.h2_elementer4 {
+  color: rgb(20, 18, 18);
+  font-size: 50px;
+  font-weight: 600;
+  font-style: italic;
+  font-variant: small-caps;
+  letter-spacing: 3px;
+}
+
+.seksjon4_p_elementer {
+  font-family: "Zen Antique Soft", serif;
+  margin: 30px;
+  font-size: 20px;
+}
+
+.lenker4 {
+  text-decoration: none;
+  padding: 0.7rem 1.2rem;
+  background-color: rgba(59, 31, 78, 0.1);
+  color: #0500006c;
+  border: 1px solid rgb(156, 154, 158);
+  margin: 20px;
+}
+.lenker4:hover {
+  background-color: rgba(135, 207, 235, 0.377);
+  color: rgb(0, 0, 0);
+  box-shadow: 5px 3px 5px grey;
+  position: relative;
+  left: 5px;
+  top: 1px;
+  transition: 0.5s ease;
+}
+
+@media screen and (max-width: 1200px) {
+  .places {
+    font-size: 20px;
+  }
+  .h2_elementer4 {
+    font-size: 40px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .bilder_seksjon2 {
+    width: 300px;
+    height: 350px;
+  }
+  .seksjon4_p_elementer {
+    font-size: 18px;
+  }
+}
+
+/* andre seksjon, */
+
+/* tredje seksjon, Videos about */
+
+.videoseksjon {
+  min-height: 50vh;
+  width: 100vw;
+  background-color: hsla(37, 38%, 46%, 0.67);
+  text-align: center;
+}
+
+.video1 {
+  height: 50%;
+  width: 75%;
+  border-radius: 100px;
+  box-shadow: 5px 5px 30px rgb(0, 0, 0);
+  margin-top: 50px;
+}
+
+.fjell {
+  color: rgb(20, 18, 18);
+  font-size: 50px;
+  margin-bottom: 10px;
+  font-weight: 600;
+  font-variant: initial;
+  letter-spacing: 1px;
+  position: relative;
+  top: 5px;
+}
+@media screen and (max-width: 1000px) {
+  .fjellinfo {
+    font-size: 19px;
+  }
+}
+
+/* tredje seksjon, Videos about */
+
+/* <!-- Footerr seksjonen --> */
+
+footer {
+  text-align: center;
+  background-color: hsla(37, 38%, 46%, 0.67);
+  display: flex;
+  flex-direction: column;
+}
+
+.sosial {
+  margin: 30px;
+}
+
+.sosiale_linker {
+  padding: 10px;
+  margin: 20px;
+}
+
+.sosiale_linker a {
+  padding: 12px;
+  border: 2px solid rgb(3, 1, 1);
+  border-radius: 50%;
+  background-color: rgb(3, 2, 3);
+}
+.sosiale_linker a:hover {
+  background-color: rgb(216, 181, 135);
+  color: rgb(4, 121, 121);
+  transition: all 0.5s ease;
+}
+
+@media screen and (max-width: 600px) {
+  .referanse {
+    font-size: 20px;
+  }
+  .merinfo {
+    font-size: 18px;
+  }
+}
+
+/* <!-- Footerr seksjonen --> */
