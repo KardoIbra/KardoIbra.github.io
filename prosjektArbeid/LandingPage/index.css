@@ -5,7 +5,9 @@
   font-family: "Zen Antique Soft", serif;
   scroll-behavior: smooth;
 }
-
+body {
+  background-color: hsla(37, 38%, 46%, 0.67);
+}
 /* forste seksjon, navigansjonslinker og introduksjon.*/
 
 .første_seksjon {
@@ -33,7 +35,7 @@
 }
 
 .navigasjons_linker a {
-  color: rgb(226, 226, 226);
+  color: hsl(0, 0%, 100%);
   font-weight: bold;
   font-size: 20px;
   text-decoration: none;
@@ -44,7 +46,7 @@
 .navigasjons_linker a:after {
   content: "";
   position: absolute;
-  background-color: rgba(241, 102, 10, 0.856);
+  background-color: hsl(37, 80%, 54%);
   height: 3.1px;
   width: 0;
   left: 0;
@@ -52,7 +54,7 @@
   transition: 0.3s;
 }
 .navigasjons_linker a:hover {
-  color: rgb(255, 255, 255);
+  color: hsl(37, 80%, 54%);
 }
 
 .navigasjons_linker a:hover:after {
@@ -101,7 +103,6 @@
   body {
     overflow-x: hidden;
   }
-
   .navigasjons_linker {
     position: absolute;
     right: 0;
@@ -114,8 +115,9 @@
     width: 35%;
     transform: translateX(100%);
     transition: transform 0.5s ease-in;
+    z-index: 1;
   }
-
+  
   .navigasjons_linker li {
     opacity: 0;
   }
@@ -164,20 +166,41 @@
 /* andre seksjon */
 
 main {
-  background-color: hsla(37, 38%, 46%, 0.67);
+  background-color: hsla(37, 38%, 46%, 0.67) none;
 }
 
-.bager4 {
-  padding: 0px;
+
+
+/* .seksjon2_main .bager4 {
+    display: flex;
+    flex-direction: row ;
+    
+}
+@media screen and (max-width: 1200px){
+  .bager4{
   display: grid;
   grid-gap: 100px;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-}
+  grid-template-rows: repeat(auto-fit, minmax(700px, 1fr));
+  }
+} */
 
-.bager4 {
-  padding: 40px;
+.bager4{
+  display: flex;
   text-align: center;
 }
+@media screen and (max-width: 1100px){
+  .bager4{
+    display: block;
+  }
+  
+  
+}
+
+/* .bager4 {
+  padding: 40px;
+  text-align: center;
+} */
+
 .places {
   color: rgb(20, 18, 18);
   text-align: center;
@@ -188,7 +211,7 @@ main {
   font-variant: initial;
   letter-spacing: 1px;
   position: relative;
-  top: 70px;
+  top: 10px;
 }
 
 .bilder_seksjon2 {
@@ -243,11 +266,11 @@ main {
 
 @media screen and (max-width: 650px) {
   .bilder_seksjon2 {
-    width: 300px;
-    height: 350px;
+    width: 100%;
+    height: 100%;
   }
   .seksjon4_p_elementer {
-    font-size: 18px;
+    font-size: 100%;
   }
 }
 
@@ -258,7 +281,7 @@ main {
 .videoseksjon {
   min-height: 50vh;
   width: 100vw;
-  background-color: hsla(37, 38%, 46%, 0.67);
+  background-color: hsla(37, 38%, 46%, 0.67) none;
   text-align: center;
 }
 
@@ -292,7 +315,7 @@ main {
 
 footer {
   text-align: center;
-  background-color: hsla(37, 38%, 46%, 0.67);
+  background-color: hsla(37, 38%, 46%, 0.67) none;
   display: flex;
   flex-direction: column;
 }

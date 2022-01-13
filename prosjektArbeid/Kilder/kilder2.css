@@ -34,7 +34,7 @@ body {
 }
 
 .navigasjons_linker a {
-  color: rgb(226, 226, 226);
+  color: hsl(0, 0%, 100%);
   font-weight: bold;
   font-size: 20px;
   text-decoration: none;
@@ -45,7 +45,7 @@ body {
 .navigasjons_linker a:after {
   content: "";
   position: absolute;
-  background-color: rgba(241, 102, 10, 0.856);
+  background-color: hsl(37, 80%, 54%);
   height: 3.1px;
   width: 0;
   left: 0;
@@ -53,7 +53,7 @@ body {
   transition: 0.3s;
 }
 .navigasjons_linker a:hover {
-  color: rgb(255, 255, 255);
+  color: hsl(37, 80%, 54%);
 }
 
 .navigasjons_linker a:hover:after {
@@ -146,8 +146,8 @@ body {
 /* kildeseksjon */
 
 .table-container {
-  padding: 0 10%;
-  margin: 40px;
+  text-align: center;
+
 }
 .Overskrift {
   font-size: 39px;
@@ -188,7 +188,7 @@ body {
 }
 
 .table tbody tr td .knapp {
-  width: 120px;
+  width: 100%;
   text-decoration: none;
   line-height: 30px;
   display: inline-block;
@@ -215,6 +215,7 @@ body {
   .table td {
     display: block;
     width: 100%;
+    background-color: none;
   }
   .table tr {
     margin-bottom: 20px;
