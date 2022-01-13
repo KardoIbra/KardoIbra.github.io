@@ -147,7 +147,6 @@ body {
 
 .table-container {
   text-align: center;
-
 }
 .Overskrift {
   font-size: 39px;
@@ -215,7 +214,6 @@ body {
   .table td {
     display: block;
     width: 100%;
-    background-color: none;
   }
   .table tr {
     margin-bottom: 20px;

@@ -192,10 +192,7 @@ body {
 }
 /* lager en grid, med auto-fit, slik at den er responsiv hele tiden */
 
-#seksjon3_main,
-.introforklaring .bager4 {
-  background-color: hsla(37, 38%, 46%, 0.67);
-}
+
 .Viktigste_protokoller {
   background-color: hsla(37, 38%, 46%, 0);
 }
@@ -257,7 +254,7 @@ body {
   .seksjon3_p_elementer {
     font-size: 20px;
   }
-  .bilder_seksjon3{
+  .bilder_seksjon3 {
     width: 100%;
     height: 100%;
   }
@@ -275,15 +272,15 @@ body {
   }
 }
 
-.LondonBilder{
+.LondonBilder {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
 }
-@media screen and (max-width: 1000px){
-  .LondonBilder{
+@media screen and (max-width: 1000px) {
+  .LondonBilder {
     display: block;
   }
-  .bag > img{
+  .bag > img {
     width: 100%;
   }
   .seksjon3_p_elementer {

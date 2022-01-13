@@ -5,7 +5,7 @@
   font-family: "Zen Antique Soft", serif;
   scroll-behavior: smooth;
 }
-body{
+body {
   background-color: hsla(37, 38%, 46%, 0.67);
 }
 /* forste Dubai seksjon, navigansjonslinker og introduksjon.*/
@@ -192,10 +192,6 @@ body{
 }
 /* lager en grid, med auto-fit, slik at den er responsiv hele tiden */
 
-.seksjon2_main,
-.introforklaring .bager4 {
-  background-color: hsla(37, 38%, 46%, 0.67) none;
-}
 .Viktigste_protokoller {
   background-color: hsla(37, 38%, 46%, 0);
 }
@@ -270,15 +266,15 @@ body{
   }
 }
 
-.DubaiBilder{
+.DubaiBilder {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
 }
-@media screen and (max-width: 1000px){
-  .DubaiBilder{
+@media screen and (max-width: 1000px) {
+  .DubaiBilder {
     display: block;
   }
-  .bag > img{
+  .bag > img {
     width: 100%;
   }
   .seksjon3_p_elementer {
@@ -292,7 +288,6 @@ body{
 
 footer {
   text-align: center;
-  background-color: hsla(37, 38%, 46%, 0.67) none;
   display: flex;
   flex-direction: column;
 }
