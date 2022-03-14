@@ -1,6 +1,8 @@
 class Drumkit {
-  constructor() { //lager en constructor funksjon, hvor man kan generere nye objeter fra den.
-    this.pads = document.querySelectorAll(".pad"); //henter alle pad
+   //lager en constructor funksjon, hvor man kan generere nye objeter fra den.
+  constructor() {
+    //henter alle pad
+    this.pads = document.querySelectorAll(".pad"); 
     this.playBtn = document.querySelector(".play");
     this.currentKick = "./sounds/kick-classic.wav";
     this.currentSnare = "./sounds/snare-acoustic01.wav";
@@ -8,9 +10,12 @@ class Drumkit {
     this.kickAudio = document.querySelector(".kick-sound");
     this.snareAudio = document.querySelector(".snare-sound");
     this.hihatAudio = document.querySelector(".hihat-sound");
-    this.index = 0; //vil spore etter hverandre
-    this.bpm = 150; //hastighet på lyd
-    this.isPlaying = null; //default
+    //vil spore etter hverandre
+    this.index = 0; 
+    //hastighet på lyd
+    this.bpm = 150; 
+     //default
+    this.isPlaying = null; 
     this.selects = document.querySelectorAll("select");
     this.muteBtns = document.querySelectorAll(".mute");
     this.tempoSlider = document.querySelector(".tempo-slider");
@@ -19,8 +24,9 @@ class Drumkit {
     this.classList.toggle("active");
   }
   repeat() {
-    let step = this.index % 8;//lager på en måte en loop. Når vi er i den 8ende, vil index-en bli til 0. altså starte igjen. 
-    const activBars = document.querySelectorAll(`.b${step}`);
+    //lager på en måte en loop. Når vi er i den 8ende, vil index-en bli til 0. altså starte igjen. 
+    let step = this.index % 8;
+    let activBars = document.querySelectorAll(`.b${step}`);
     //Loop Over the Bars/pads
     activBars.forEach((bar) => {
       bar.style.animation = `playTrack 0.3s alternate ease-in-out 2`;
@@ -28,15 +34,18 @@ class Drumkit {
       if (bar.classList.contains("active")) {
         //sjekk hvilken lyd er aktiv. hvis alle lyder er aktive, vil alle spilles.
         if (bar.classList.contains("kick-pad")) {
-          this.kickAudio.currentTime = 0; //Sørger for at alle pads spilles og ikke til en lyd er ferdig.
+          //Sørger for at alle pads spilles og ikke til en lyd er ferdig.
+          this.kickAudio.currentTime = 0; 
           this.kickAudio.play();
         }
         if (bar.classList.contains("snare-pad")) {
-          this.snareAudio.currentTime = 0; //Sørger for at alle pads spilles og ikke til en lyd er ferdig.
+          //Sørger for at alle pads spilles og ikke til en lyd er ferdig.
+          this.snareAudio.currentTime = 0; 
           this.snareAudio.play();
         }
         if (bar.classList.contains("hihat-pad")) {
-          this.hihatAudio.currentTime = 0; //Sørger for at alle pads spilles og ikke til en lyd er ferdig.
+          //Sørger for at alle pads spilles og ikke til en lyd er ferdig.
+          this.hihatAudio.currentTime = 0; 
           this.hihatAudio.play();
         }
       }
@@ -44,7 +53,7 @@ class Drumkit {
     this.index++;
   }
   start() {
-    const interval = (60 / this.bpm) * 1000;
+    let interval = (60 / this.bpm) * 1000;
     //Sjekker hvis det ikke spilles
     if (!this.isPlaying) {
       //sjekker at det ikke spilles.
@@ -54,8 +63,9 @@ class Drumkit {
     } else {
       //hvis det allerede er satt
       //Fjern intervalet
-      clearInterval(this.isPlaying); //fjerner vi den
-      this.isPlaying = null; //resetter isPlaying til null. ellers vil den ikke fungere. Man må resette det til null.
+      clearInterval(this.isPlaying); 
+      //resetter isPlaying til null. ellers vil den ikke fungere. Man må resette det til null.
+      this.isPlaying = null; 
     }
   }
   updateBtn() {
@@ -70,19 +80,25 @@ class Drumkit {
     }
   }
   changeSound(e) {
-    const selectionName = e.target.name;
-    const selectionValue = e.target.value; //henter verdien
+    let selectionName = e.target.name;
+    //henter verdien
+    let selectionValue = e.target.value; 
     switch (selectionName) {
       case "kick-select":
-        this.kickAudio.src = selectionValue; // setter lydkilden til hva vi har som verdi i inputet man velger.
+        // setter lydkilden til hva vi har som verdi i inputet man velger.
+        this.kickAudio.src = selectionValue; 
         break;
       case "snare-select":
-        this.snareAudio.src = selectionValue; // setter lydkilden til hva vi har som verdi i inputet man velger.
+        // setter lydkilden til hva vi har som verdi i inputet man velger.
+        this.snareAudio.src = selectionValue; 
         break;
       case "hihat-select":
-        this.hihatAudio.src = selectionValue; // setter lydkilden til hva vi har som verdi i inputet man velger.
+        // setter lydkilden til hva vi har som verdi i inputet man velger.
+        this.hihatAudio.src = selectionValue; 
         break;
-      //man kan forresten legge til så mange lyd man har, så lenge man har en kilde til den i html-option-value. Vi kan legge til mer options med value som peker på kilden til lyden.
+      /*man kan forresten legge til så mange lyd man har, så lenge man har en kilde til den i html-option-value. 
+      Vi kan legge til mer options med value som peker på kilden til lyden.
+      */
     }
   }
   mute(e) {
@@ -136,15 +152,15 @@ class Drumkit {
     }
   }
 }
-
-const drumkit = new Drumkit(); //lager en tom objekt, den vil automatisk generere alle objektene og metodene som er laget.
+//lager en tom objekt, den vil automatisk generere alle objektene og metodene som er laget.
+const drumkit = new Drumkit(); 
 
 //Her er det samling av EventListeners.
 
 drumkit.pads.forEach((pad) => {
   pad.addEventListener("click", drumkit.activePad);
   pad.addEventListener("animationend", function () {
-    this.style.animation = ""; //This refererer til pad
+    this.style.animation = ""; //This.style.animation refererer til pad
   });
 });
 
