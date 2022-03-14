@@ -7,6 +7,7 @@
 }
 body {
   background-color: hsl(37, 38%, 46%);
+  overflow-x: hidden ;
 }
 /* forste seksjon, navigansjonslinker og introduksjon.*/
 
