@@ -1,6 +1,8 @@
 * {
   margin: 0;
   padding: 0;
+  /* border-box gjør at når man adder til f.eks. padding, vil den 
+  bli innefor elementet og ikke utenfor. */
   box-sizing: border-box;
 }
 
@@ -10,39 +12,43 @@ body {
 }
 i,
 svg {
+  /* Fjerner pointer fra selve svg. 
+  sørger for at man kan klikke på hvor som helst
+  av knappen. Når man legger til eventListener til knappen
+  vil den nå fungere uansett hvor man klikker på. */
   pointer-events: none;
 }
 
-.kick-pad,
-.snare-pad,
-.hihat-pad {
+.forsteDiver,
+.andreDiver,
+.tredjeDiver {
   width: 5rem;
   height: 5rem;
   margin: 1rem 0.5rem;
   cursor: pointer;
 }
 
-.kick-pad {
+.forsteDiver {
   background: rgba(106, 185, 230, 0.637);
 }
-.snare-pad {
+.andreDiver {
   background: rgba(204, 58, 223, 0.425);
 }
 
-.hihat-pad {
+.tredjeDiver {
   background: rgba(204, 135, 6, 0.479);
 }
-.kick-pad.active {
+.forsteDiver.active {
   background: rgba(86, 184, 241, 0.87);
 }
-.snare-pad.active {
+.andreDiver.active {
   background: rgba(248, 86, 240, 0.753);
 }
-.hihat-pad.active {
+.tredjeDiver.active {
   background: rgba(250, 176, 65, 0.877);
 }
 
-.sequencer {
+.storsteDiv {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
@@ -50,9 +56,9 @@ svg {
   justify-content: center;
 }
 
-.hihat-track,
-.snare-track,
-.kick-track {
+.tredjeSpor,
+.andreSpor,
+.forsteSpor {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -86,7 +92,7 @@ svg {
 .pad {
   transition: all 0.5s ease;
 }
-.play {
+.spill {
   padding: 1rem 1rem;
   font-size: 2rem;
   background: rgba(160, 111, 21, 0.322);
@@ -95,7 +101,7 @@ svg {
   cursor: pointer;
   margin-top: 1rem;
 }
-.play:hover {
+.spill:hover {
   color: rgba(6, 22, 255, 0.788);
 }
 
@@ -122,6 +128,7 @@ button {
 
 .tempo-slider {
   padding: 0.3rem;
+  /* Fjerner den defaulte utsende til tempo-slider */
   -webkit-appearance: none;
   margin: 1rem 0rem;
   width: 100%;
@@ -142,7 +149,7 @@ p {
 h1 {
   color: white;
 }
-.createBeat {
+.lagBeat {
   display: flex;
   width: 100vw;
   justify-content: center; /*Centrer horisontalt*/
@@ -150,17 +157,18 @@ h1 {
   align-items: flex-end; /*plasserer den nederst*/
   
 }
-@keyframes playTrack {
+@keyframes divAnimasjon {
+  /* Div-ene får større størrelse når de spilles*/
   from {
     transform: scale(1);
   }
   to {
-    transform: scale(1.3); /*PlayTrack får større størrelse når den spilles*/
+    transform: scale(1.3); 
   }
 }
 
 @media screen and (max-width: 705px) {
-  .kick-track, .snare-track, .hihat-track {
+  .forsteSpor, .andreSpor, .tredjeSpor {
     /*display: block;
     width: 100%;
     margin-top: 3rem;
@@ -170,28 +178,28 @@ h1 {
     justify-content: center;
     align-items: center;
   }
-  .kick-track > div.controls{
+  .forsteSpor > div.controls{
     display: block;
     width: 40%;
   }
-  .snare-track > div.controls{
+  .andreSpor > div.controls{
     display: block;
     width: 40%;
   }
-  .hihat-track > div.controls{
+  .tredjeSpor > div.controls{
     display: block;
     width: 40%;
   }
-.kick-pad,
-.snare-pad,
-.hihat-pad {
+.forsteDiver,
+.andreDiver,
+.tredjeDiver {
   width: 3rem;
   height: 3rem;
   margin: 1rem 2.5rem 1rem 2.5rem;
   cursor: pointer;
   justify-content: center;
 }
-  .createBeat {
+  .lagBeat {
     font-size:20px;
   }
   .tempo-nr,
@@ -201,7 +209,7 @@ p{
 .tempo p{
   font-size: 1rem;
 }
-.play {
+.spill {
   padding: 0.5rem 0.5rem;
   font-size: 1.5rem;
   background: rgba(160, 111, 21, 0.322);
@@ -213,7 +221,7 @@ p{
 .controls > h1 {
   font-size: 1.5rem;
 }
-.sequencer > h1 {
+.storsteDiv > h1 {
   display: flex;
   height: 20vh;
   align-items: flex-end;
