@@ -1,7 +1,8 @@
 class Drumkit {
   //lager en constructor funksjon, hvor man kan generere nye objeter fra den.
   constructor() {
-    //henter alle divenene som skal spilles.
+    /*henter alle divenene som skal spilles, ved å bruke i tillegg "this" keyword 
+    slik at den blir lagt inn som et nytt objekt i det tome objektet når vi kaller construction funksjonen ved bruk av"new"-operatoren nedenfor.*/
     this.diver = document.querySelectorAll(".pad");
     //Henter knappen
     this.spilleKnapp = document.querySelector(".spill");
@@ -27,7 +28,7 @@ class Drumkit {
     this.classList.toggle("active");
   }
   repeat() {
-    /*lager på en måte en loop. Når vi er i den 8ende, vil index-en bli til 0. altså starte igjen.
+    /*lager en slags loop. Når vi er i den 8ende, vil index-en bli til 0. altså starte igjen.
     Fordi her bruker vi modolus.
  */
     let step = this.index % 8;
@@ -185,14 +186,18 @@ class Drumkit {
     }
   }
 }
-//lager en tom objekt, den vil automatisk generere alle objektene og metodene som er laget.
+/*
+Kaller den construction funksjonen ved bruk av "new"-operator, slik at
+hver egenskap vi legger til construction-funksjonen blir lagt inn
+som en ny objekt. Dette gjør at coden blir veldig ryddig og pen.
+*/
 const drumkit = new Drumkit();
 
-//Her er det samling av EventListeners.
+//Her er det samlingen av EventListeners.
 
 drumkit.diver.forEach((pad) => {
   pad.addEventListener("click", drumkit.activePad);
-  /* Stopper animasjonen vi lage ovenfor når den er ferdig
+  /* Stopper animasjonen vi lagde ovenfor når den er ferdig
   slik at den starter på nytt */
   pad.addEventListener("animationend", function () {
     this.style.animation = ""; //This.style.animation refererer til pad som er classen til div-ene
@@ -200,7 +205,7 @@ drumkit.diver.forEach((pad) => {
 });
 
 drumkit.spilleKnapp.addEventListener("click", function () {
-  //kaller tilbake funksjonene
+  //kaller tilbake funksjonene. (call-back-funksjon)
   drumkit.oppdaterKnappen();
   drumkit.start();
 });
@@ -224,6 +229,6 @@ drumkit.tempoSkyveKnapp.addEventListener("input", function (e) {
 });
 
 drumkit.tempoSkyveKnapp.addEventListener("change", function (e) {
-  //change henter verdien etter å ha sluppet tempoSkyveKnapp. Det er det change gjør.
+  //change henter verdien etter å ha sluppet tempoSkyveKnapp.
   drumkit.oppdaterTempo(e);
 });
