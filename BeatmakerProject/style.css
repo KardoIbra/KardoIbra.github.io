@@ -167,7 +167,7 @@ h1 {
   }
 }
 
-@media screen and (max-width: 705px) {
+@media screen and (max-width: 750px) {
   .forsteSpor, .andreSpor, .tredjeSpor {
     /*display: block;
     width: 100%;
