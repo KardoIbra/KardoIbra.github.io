@@ -167,7 +167,7 @@ body{
 /* Andre seksjon, prosessor */
 
 #seksjon2_main{
-      background-color: #2e0000;
+      background-color: rgba(126, 85, 32, 0.743);
 }
 
 .Heleseksjon2{
@@ -295,7 +295,7 @@ body{
 
 
 #seksjon3_main{
-      background-color: #490202;
+      background-color: rgba(149, 106, 50, 0.743);
 }
 
 
@@ -320,7 +320,7 @@ body{
 
 /* Fjerde seksjon, Lagringsmedium */
 #seksjon4_main{
-      background-color: #2e0000;
+      background-color: rgba(126, 85, 32, 0.666);
 }
 
 
@@ -347,7 +347,7 @@ body{
 /* <!-- Footerr seksjonen --> */
 footer {
       text-align: center ;
-      background-color: #490202;
+      background-color: rgba(126, 85, 32, 0.743);
       display: flex;
       flex-direction: column;
       

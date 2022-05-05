@@ -8,6 +8,9 @@
 
 /* forste seksjon, navigansjonslinker og introduksjon.*/
 
+body{
+      background-color: rgba(126, 85, 32, 0.666);
+}
 .første_seksjon{
       min-height: 100vh;
       width: 100vw;
@@ -250,7 +253,7 @@ body{
 /* <!-- Footerr seksjonen --> */
 footer {
       text-align: center ;
-      background-color: rgb(102, 100, 100);
+      background-color: rgba(126, 85, 32, 0.243);
       display: flex;
       flex-direction: column;
       

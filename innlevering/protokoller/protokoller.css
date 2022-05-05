@@ -164,7 +164,7 @@ body{
 
 /* ANDRE seksjon, IP */
 #seksjon2_main{
-      background-color: #19192c;
+      background-color: rgba(126, 85, 32, 0.666);
 }
 
 .Heleseksjon2{
@@ -283,7 +283,7 @@ body{
 /* tredje seksjon, TCP/IP */
 
 #seksjon3_main{
-      background-color: #19192ce3;
+      background-color: rgba(126, 85, 32, 0.781);
 }
 
 @media screen and (max-width: 1000px){
@@ -307,7 +307,7 @@ body{
 /* <!-- Footerr seksjonen --> */
 footer {
       text-align: center ;
-      background-color: #19192c;
+      background-color: rgba(126, 85, 32, 0.836);
       display: flex;
       flex-direction: column;
       
