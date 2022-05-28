@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="#"/>
+    <title>BeatMaker</title>
+  </head>
+  <body>
+    <div class="sequencer">
+          <h1 class="createBeat">Lag din egen beat!</h1>
+      <div class="kick-track">
+        <div class="controls">
+          <h1>Kick</h1>
+          <button data-track="0" class="mute kick-volume">
+            <i class="fas fa-volume-mute"></i>
+          </button>
+          <select name="kick-select" id="kick-select">
+            <option value="./sounds/kick-classic.wav">Classic</option>
+            <option value="./sounds/kick-cultivator.wav"> Cultivator</option>
+            <option value="./sounds/kick-heavy.wav">Heavy</option>
+            <option value="./sounds/kick-deep.wav">Deep</option>
+            <option value="./sounds/kick-dry.wav">Dry</option>
+          </select>
+          
+        </div>
+        <div class="kick"></div>
+        <div class="pad kick-pad b0"></div>
+        <div class="pad kick-pad b1"></div>
+        <div class="pad kick-pad b2"></div>
+        <div class="pad kick-pad b3"></div>
+        <div class="pad kick-pad b4"></div>
+        <div class="pad kick-pad b5"></div>
+        <div class="pad kick-pad b6"></div>
+        <div class="pad kick-pad b7"></div>
+      </div>
+      <div class="snare-track">
+        <div class="controls">
+          <h1>Snare</h1>
+          <button data-track="1" class="mute snare-volume">
+            <i class="fas fa-volume-mute"></i>
+          </button>
+          <select name="snare-select" id="snare-select">
+            <option value="./sounds/snare-vinyl02.wav">Vinyl</option>
+            <option value="./sounds/snare-brute.wav">Brute</option>
+            <option value="./sounds/snare-lofi01.wav">Lofi</option>
+            <option value="./sounds/snare-modular.wav">Modular</option>
+          </select>
+        </div>
+        <div class="snare"></div>
+        <div class="pad snare-pad b0"></div>
+        <div class="pad snare-pad b1"></div>
+        <div class="pad snare-pad b2"></div>
+        <div class="pad snare-pad b3"></div>
+        <div class="pad snare-pad b4"></div>
+        <div class="pad snare-pad b5"></div>
+        <div class="pad snare-pad b6"></div>
+        <div class="pad snare-pad b7"></div>
+      </div>
+      <div class="hihat-track">
+        <div class="controls">
+          <h1>Hihat</h1>
+          <button data-track="2" class="mute hihat-volume">
+            <i class="fas fa-volume-mute"></i>
+          </button>
+          <select name="hihat-select" id="hihat-select">
+            <option value="./sounds/hihat-acoustic01.wav">Acoustic</option>
+            <option value="./sounds/hihat-analog.wav">Analog</option>
+            <option value="./sounds/hihat-plain.wav">Plain</option>
+            <option value="./sounds/hihat-reso.wav">Reso</option>
+            <option value="./sounds/hihat-ring.wav">Ring</option>
+          </select>
+        </div>
+        <div class="hihat"></div>
+        <div class="pad hihat-pad b0"></div>
+        <div class="pad hihat-pad b1"></div>
+        <div class="pad hihat-pad b2"></div>
+        <div class="pad hihat-pad b3"></div>
+        <div class="pad hihat-pad b4"></div>
+        <div class="pad hihat-pad b5"></div>
+        <div class="pad hihat-pad b6"></div>
+        <div class="pad hihat-pad b7"></div>
+      </div>
+      <button class="play">Spill</button>
+      <div class="tempo">
+            <input type="range" class="tempo-slider" max="300" min="20" value="150">
+            <!-- <p>Tempo: <span class="tempo-nr">150</span></p> -->
+            <!-- <button class="getData">Hent data</button> -->
+            <h3 class="besok"></h3>
+      </div>  
+    </div>
+    <!-- Souren til lydene er satt som defualt, men det skal endres ved brukerens valg av lyd fra Select-option -->
+    <audio class="kick-sound" src="./sounds/kick-classic.wav"></audio>
+    <audio class="snare-sound" src="./sounds/snare-acoustic01.wav"></audio>
+    <audio class="hihat-sound" src="./sounds/hihat-acoustic01.wav"></audio>
+
+
+    
+     <!-- Her kommer HTML-koden vår -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js"></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"
+      integrity="sha512-xd+EFQjacRjTkapQNqqRNk8M/7kaek9rFqYMsbpEhTLdzq/3mgXXRXaz1u5rnYFH5mQ9cEZQjGFHFdrJX2CilA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="beatMaker.js"></script>
+  </body>
+</html>

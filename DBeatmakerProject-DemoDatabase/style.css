@@ -1,0 +1,255 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  background: rgb(0, 0, 0);
+}
+i,
+svg {
+  pointer-events: none;
+}
+
+.kick-pad,
+.snare-pad,
+.hihat-pad {
+  width: 5rem;
+  height: 5rem;
+  margin: 1rem 0.5rem;
+  cursor: pointer;
+}
+
+.kick-pad {
+  background: rgba(106, 185, 230, 0.637);
+}
+.snare-pad {
+  background: rgba(204, 58, 223, 0.425);
+}
+
+.hihat-pad {
+  background: rgba(204, 135, 6, 0.479);
+}
+.kick-pad.active {
+  background: rgba(86, 184, 241, 0.87);
+}
+.snare-pad.active {
+  background: rgba(248, 86, 240, 0.753);
+}
+.hihat-pad.active {
+  background: rgba(250, 176, 65, 0.877);
+}
+
+.sequencer {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hihat-track,
+.snare-track,
+.kick-track {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 75%;
+  margin-top: 5rem;
+}
+
+.kick,
+.snare,
+.hihat {
+  display: flex;
+}
+.controls {
+  display: flex;
+  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  margin: 0rem 2rem;
+}
+.controls button {
+  padding: 0.5rem;
+  border: none;
+  background-color: wheat;
+  color: rgb(3, 3, 3);
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.pad {
+  transition: all 0.5s ease;
+}
+.play {
+  padding: 1rem 1rem;
+  font-size: 2rem;
+  background: rgba(160, 111, 21, 0.322);
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+.play:hover {
+  color: rgba(6, 22, 255, 0.788);
+}
+
+select {
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin: 0.5rem;
+}
+button {
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.mute.active {
+  background: gray;
+  color: white;
+}
+.tempo {
+  margin: 2.5rem;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.tempo-slider {
+  padding: 0.3rem;
+  /* fjerner den defaulte utsenden til slideren */
+  -webkit-appearance: none;
+  margin: 1rem 0rem;
+  width: 100%;
+  position: relative;
+  background: grey;
+  cursor: pointer;
+  border-radius: 1rem;
+}
+.tempo p {
+  font-size: 1.5rem;
+  margin: 2rem;
+  text-align: center;
+}
+.tempo-nr,
+p {
+  color: rgb(250, 246, 246);
+}
+.getData {
+  width: 40%;
+  align-items: center;
+  padding: 1rem;
+  font-size: 1.5rem;
+  background: rgba(160, 111, 21, 0.322);
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin: 1rem;
+}
+.getData:hover {
+  color: rgba(6, 22, 255, 0.788);
+}
+.besok{
+  font-size: 1.5rem;
+  font-style: normal;
+  color:rgba(250, 176, 65, 0.877);
+}
+
+h1 {
+  color: white;
+}
+.createBeat {
+  display: flex;
+  width: 100vw;
+  justify-content: center; /*Centrer horisontalt*/
+  height: 30vh; /*Gir den en høyde for å legge den nederst*/
+  align-items: flex-end; /*plasserer den nederst*/
+  font-style: normal;
+  color:rgba(250, 176, 65, 0.877);
+
+}
+@keyframes playTrack {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.3); /*PlayTrack får større størrelse når den spilles*/
+  }
+}
+
+@media screen and (max-width: 705px) {
+  .kick-track,
+  .snare-track,
+  .hihat-track {
+    /*display: block;
+    width: 100%;
+    margin-top: 3rem;
+    */
+    display: flex;
+    flex-wrap: wrap; /*elementene går under hverandre, når det blir lite plass*/
+    justify-content: center;
+    align-items: center;
+  }
+  .kick-track > div.controls {
+    display: block;
+    width: 40%;
+  }
+  .snare-track > div.controls {
+    display: block;
+    width: 40%;
+  }
+  .hihat-track > div.controls {
+    display: block;
+    width: 40%;
+  }
+  .kick-pad,
+  .snare-pad,
+  .hihat-pad {
+    width: 3rem;
+    height: 3rem;
+    margin: 1rem 2.5rem 1rem 2.5rem;
+    cursor: pointer;
+    justify-content: center;
+  }
+  .createBeat {
+    font-size: 20px;
+  }
+  .tempo-nr,
+  p {
+    font-size: 1rem;
+  }
+  .tempo p {
+    font-size: 1rem;
+  }
+  .play {
+    padding: 0.5rem 0.5rem;
+    font-size: 1.5rem;
+    background: rgba(160, 111, 21, 0.322);
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 1rem;
+  }
+  .controls > h1 {
+    font-size: 1.5rem;
+  }
+  .sequencer > h1 {
+    display: flex;
+    height: 20vh;
+    align-items: flex-end;
+  }
+
+  #kick-select,
+  #snare-select,
+  #hihat-select {
+    padding: 10px;
+    width: 40%;
+  }
+}
