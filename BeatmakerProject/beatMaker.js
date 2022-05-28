@@ -1,234 +1,331 @@
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyDOVU88HBPNfJZiRPSjtLmiWClyxzpyFMs",
+  authDomain: "beatsdatabase.firebaseapp.com",
+  projectId: "beatsdatabase",
+  storageBucket: "beatsdatabase.appspot.com",
+  messagingSenderId: "778755516458",
+  appId: "1:778755516458:web:98e21e734765d7f1f8fb53",
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+// Lager en referanse til databasen. En måte hvilke variabel jeg skal bruke når jeg skal ta tak i
+let db = firebase.firestore();
+
 class Drumkit {
-  //lager en constructor funksjon, hvor man kan generere nye objeter fra den.
+  /*Lager en constructor funksjon, hvor man kan genere nye objekter fra den. */
   constructor() {
-    /*henter alle divenene som skal spilles, ved å bruke i tillegg "this" keyword 
-    slik at den blir lagt inn som et nytt objekt i det tome objektet når vi kaller construction funksjonen ved bruk av"new"-operatoren nedenfor.*/
-    this.diver = document.querySelectorAll(".pad");
-    //Henter knappen
-    this.spilleKnapp = document.querySelector(".spill");
+/*Henter alle divene som skal spilles, ved å bruke i tillegg "this"-keyword
+slik at den blir lagt inn som et nytt objekt i det tome objektet når vi kaller
+construction funksjonen ved bruk av "new"-operatoren nedenfor */
+    this.pads = document.querySelectorAll(".pad"); //henter alle pad
+    this.playBtn = document.querySelector(".play");
     this.currentKick = "./sounds/kick-classic.wav";
     this.currentSnare = "./sounds/snare-acoustic01.wav";
     this.currentHihat = "./sounds/hihat-acoustic01.wav";
-    //henter all audio
     this.kickAudio = document.querySelector(".kick-sound");
     this.snareAudio = document.querySelector(".snare-sound");
     this.hihatAudio = document.querySelector(".hihat-sound");
-    //vil spore etter hverandre. Dette er for en slags loop over diver.
-    this.index = 0;
-    //hastighet på lyd
-    this.bpm = 150;
-    //default
-    this.isPlaying = null;
-    //henter alle tre selectene som er uten klasse
+    this.index = 0; //vil spore etter hverandre
+    this.bpm = 150; //hastighet på lyd
+    this.isPlaying = null; //default
+    //henter alle selectene
     this.selects = document.querySelectorAll("select");
-    this.stumKnapp = document.querySelectorAll(".mute");
-    this.tempoSkyveKnapp = document.querySelector(".tempo-slider");
+    this.muteBtns = document.querySelectorAll(".mute");
+    this.tempoSlider = document.querySelector(".tempo-slider");
   }
   activePad() {
+    //Aktiverer divene med lyd. Diven som blir farget.
     this.classList.toggle("active");
   }
   repeat() {
-    /*lager en slags loop. Når vi er i den 8ende, vil index-en bli til 0. altså starte igjen.
-    Fordi her bruker vi modolus.
- */
-    let step = this.index % 8;
-    /*Nå har vi en slags spor fra 0 - 7 når den når 8 resettes det til 1. 
-    vi kan bruke dette til å velge klassene vi lagde. step er som sagt fra 0- 7
-    men vi setter det til en del av klassen vi lagde slik at denne loopen looper over 
-    alle divene som har klasse som tilsvarer .b${step}. på den måten kav vi loope over 
-    alle divene. Man kan godt lage mange andre diver også, samtidig som vi må øke indexen til 
-    loopen. På den måten kan vi loope over hvor mange diver vi ønsker.  */
-    let aktiverteDiver = document.querySelectorAll(`.b${step}`);
-    //Looper over diver
-    aktiverteDiver.forEach((divv) => {
-      /* her lager vi en animasjon til hver div når vi looper over dem. animasjonensverdier ligger i CSS, med navn divAnimasjon*/
-      divv.style.animation = `divAnimasjon 0.3s alternate ease-in-out 2`;
-      //Sjekker hvis diver er active
-      if (divv.classList.contains("active")) {
-        //sjekk hvilken lyd er aktiv. hvis alle lyder er aktive, vil vi at alle skal spilles.
-        if (divv.classList.contains("forsteDiver")) {
-          //Sørger for at alle diver spilles når som helst og ikke til en lyd er ferdig.
-          this.kickAudio.currentTime = 0;
+    /*lager en slags loop med en metode start(){} som starter loopen. Når vi er i den 8ende, vil index-en bli til 0. altså starte igjen.
+    Fordi her bruker vi modolus.*/
+      /*Nå har vi en slags spor fra 0 -7. Når loppen altså index blir 8 % 8, resettes det
+    til 1 pga modulusen. vi kan kan bruke dette til å velge klassene vi lagde, siden vi har 
+    en spor/steps som er fra 0 - 7, kan vi hente klassene til divene som har .b1 - .b7 slik: (`.b${step}`)  */
+    let step = this.index % 8; 
+  
+    // henter alle .b klassene til hver beat
+    const activBars = document.querySelectorAll(`.b${step}`);
+    //Loop Over the Bars/pads og radene/index
+    // index-en her, henter hvilken rad som er aktiv.
+    activBars.forEach((bar, index) => {
+     /* her lager vi en animasjon med @keyframes til hver div/bar/pad når vi looper over dem. animasjonensverdier ligger i CSS, med navn playTrack
+     Her adder vi alternate 2, slik at animasjonen ikke bare er for utvidelsen, men også for kontraksjonen*/
+      bar.style.animation = `playTrack 0.3s alternate ease-in-out 2`;
+      //Check if pads are active
+      if (bar.classList.contains("active")) {
+        //sjekk hvilken pad/div/bar er aktiv. 
+        if (bar.classList.contains("kick-pad")) {
+          /*Sørger for at alle pads/bars spilles og ikke til en lyd er ferdig.
+          vi resetter tiden til lydene til å være 0, hver gang vi spiller en lyd 
+          Det gjør at man kan spiller på alle lydene uansett hva tempoen.*/
+          this.kickAudio.currentTime = 0; 
+          //spiller på lyd
           this.kickAudio.play();
+          db.collection("beat")
+            .doc("kick" + step)
+            .set({
+              //lager en collection med objekt
+              Rad: index,
+              Box: `${step}`,
+              userClick: bar.classList.contains("kick-pad"),
+              active: true,
+            });
         }
-        if (divv.classList.contains("andreDiver")) {
-          //Sørger for at alle diver spilles når som helst og ikke til en lyd er ferdig.
-          this.snareAudio.currentTime = 0;
+
+        if (bar.classList.contains("snare-pad")) {
+          this.snareAudio.currentTime = 0; //Sørger for at alle pads spilles og ikke til en lyd er ferdig.
           this.snareAudio.play();
+          db.collection("beat")
+            .doc("snare" + step)
+            .set({
+              //Lager en collection.
+              Rad: index,
+              Box: `${step}`,
+              userClick: bar.classList.contains("snare-pad"),
+              active: true,
+            });
         }
-        if (divv.classList.contains("tredjeDiver")) {
-          //Sørger for at alle diver spilles når som helst og ikke til en lyd er ferdig.
-          this.hihatAudio.currentTime = 0;
+        if (bar.classList.contains("hihat-pad")) {
+          this.hihatAudio.currentTime = 0; //Sørger for at alle pads spilles og ikke til en lyd er ferdig.
           this.hihatAudio.play();
+          db.collection("beat")
+            .doc("hihat" + step)
+            .set({
+              Rad: index,
+              Box: `${step}`,
+              userClick: bar.classList.contains("hihat-pad"),
+              active: true,
+            });
         }
       }
     });
     this.index++;
   }
+  //setter en interval for å loope over divene flere ganger
   start() {
-    /* ønsker å lage noe som kan loope over en funksjon flere ganger.*/
-    //ganger med 1000, fordi intervalet regner det som ms.
-    let interval = (60 / this.bpm) * 1000;
+    /*Her deler vi 60 med beats per minutt/60 for å få bpm, og så
+    ganger vi med 1000, fordi intervalet regner med milisekunder. 
+    Dette gjør vi for å altså gjøre om til sekunder. */
+    const interval = (60 / this.bpm) * 1000;
     //Sjekker hvis det ikke spilles
     if (!this.isPlaying) {
+      //sjekker at det ikke spilles.
       this.isPlaying = setInterval(() => {
         this.repeat();
       }, interval);
     } else {
-      /*Fjern intervalet*/
-      clearInterval(this.isPlaying);
-      //resetter isPlaying til null. ellers vil den ikke fungere. Man må resette det til null.
-      this.isPlaying = null;
+      //hvis det allerede er satt
+      //Fjern intervalet
+      clearInterval(this.isPlaying); //fjerner vi den
+      this.isPlaying = null; //resetter isPlaying til null. ellers vil den ikke fungere. Man må resette det til null.
     }
   }
-  oppdaterKnappen() {
+  updateBtn() {
     //Hvis det ikke spilles
     if (!this.isPlaying) {
       //bytter vi ut Spill med Stop
-      this.spilleKnapp.innerText = "Stop";
-      //legger til en klasse
-      this.spilleKnapp.classList.add("active");
+      this.playBtn.innerText = "Stop"; //
+      this.playBtn.classList.add("active");
     } else {
-      //skal det være spill for å spille
-      this.spilleKnapp.innerText = "Spill";
-      //Fjerner klassen
-      this.spilleKnapp.classList.remove("active");
+      this.playBtn.innerText = "Spill";
+      this.playBtn.classList.remove("active");
     }
   }
-  lydEndring(e) {
-    //henter selecten vi klikker på
-    let selectionNavn = e.target.name;
-    //henter verdien
-    let selectionVerdi = e.target.value;
-    switch (selectionNavn) {
-      //hvis det er kick-select som er selected
+
+  //metoden for lydbytting
+  changeSound(e) {
+    const selectionName = e.target.name;//henter navnet til lyden
+    const selectionValue = e.target.value; //henter verdien/value lyden
+    /*Lager en switch statment. 
+    Basert på (selectionName), altså navnet til lyden:  */
+    switch (selectionName) {
+      //hvis kick-select som er valgt
       case "kick-select":
-        // setter vi lydkilden til hva vi har som verdi i inputet man velger.
-        this.kickAudio.src = selectionVerdi;
+        //setter kickAudio.src som er defualt til å være lydVerdien til option i select-elementet, altså lydens value som er valgt.
+        this.kickAudio.src = selectionValue; 
+        /*Lagrer lydens value i set dokument som heter KickLyd i en collection som heter "beat" */
+        db.collection("beat").doc("KickLyd").set({
+          LydKilde: selectionValue,
+        });
+        //bryter dette case-et, og så repeterer vi det to ganger til.
         break;
       case "snare-select":
-        // setter lydkilden til hva vi har som verdi i inputet man velger.
-        this.snareAudio.src = selectionVerdi;
+        this.snareAudio.src = selectionValue; // setter lydkilden til hva vi har som verdi i inputet man velger.
+        db.collection("beat").doc("SnareLyd").set({
+          LydKilde: selectionValue,
+        });
         break;
       case "hihat-select":
-        // setter lydkilden til hva vi har som verdi i inputet man velger.
-        this.hihatAudio.src = selectionVerdi;
+        this.hihatAudio.src = selectionValue; // setter lydkilden til hva vi har som verdi i inputet man velger.
+        db.collection("beat").doc("HihatLyd").set({
+          LydKilde: selectionValue,
+        });
         break;
-      /*man kan forresten legge til så mange lyd man har, så lenge man har en kilde til den i html-option-value. 
-      Vi kan legge til mer options med value som peker på kilden til lyden.
-      */
+      //man kan forresten legge til så mange lyd man har, så lenge man har en kilde til den i html-option-value. Vi kan legge til mer options med value som peker på kilden til lyden.
     }
   }
   mute(e) {
-    //henter indexen til data-track for å vite hvilken har vi klikket på.
-    let stumIndex = e.target.getAttribute("data-track");
-    //legger til toggle active til muten, for kunne gjøre den dynamisk.
+    //henter attributet "data-track" som  er indexen til mutenen til radene 0, 1 0g 2. 
+    let muteIndex = e.target.getAttribute("data-track");
+    //adderer toggle active til muten
     e.target.classList.toggle("active");
-    //sjekker hvilken er aktiv, hvis det er, betyr det at vi muter den.
+    /*Sjekker hvis det vi trykker på har klassen "active", hvis ja den har active, muter vi raden */
     if (e.target.classList.contains("active")) {
-      switch (stumIndex) {
-        //hvis stumIndex er case 0, som er aktiv
+      //basert på muteindexene 0, 1, 2, lager vi en switch statement
+      switch (muteIndex) {
+        //hvis det er case 0, u dette tilfelle er 0 = kickAudio
         case "0":
-          //fjerner vi lyden
+          //vi muter lyden ved å sette volumet til kickAudio til å være 0. 
           this.kickAudio.volume = 0;
+          //lagrer også at lyden er av på databasen i et dokument som heter KickMute, med lit info som objekt.
+          db.collection("beat").doc("KickMute").set({
+            active: true,
+            HeleRad: 0,
+            lyd: "av",
+          });
           break;
-        //hvis stumIndex er case 1 som er aktiv
         case "1":
-          //fjerner vi lyden
           this.snareAudio.volume = 0;
+          db.collection("beat").doc("SnareMute").set({
+            active: true,
+            HeleRad: 1,
+            lyd: "av",
+          });
           break;
-        //hvis stumIndex er case 2 som er aktiv
         case "2":
-          //fjerner vi lyden
           this.hihatAudio.volume = 0;
+          db.collection("beat").doc("HihatMute").set({
+            active: true,
+            HeleRad: 2,
+            lyd: "av",
+          });
           break;
       }
+            //hvis det ikke er aktiv, altså at brukeren ikke har trukket på mutenButtonen.
     } else {
-      //hvis stumIndex ikke er aktiv
-      switch (stumIndex) {
-        //hvis case 0 er ikke aktiv
+      //lager en annen switch statement basert på muteIndex.
+            switch (muteIndex) {
+        //her vil case-ene være var inaktive, noe som betyr at vi legger lyden tilbake
         case "0":
-          //legger vi til lyden tilbake
+          //legger til lyden tilbake, ved å la volumet være = 1
           this.kickAudio.volume = 1;
+          //oppdaterer i samme dokument at lyden er på. Active: false, i stedenfor true.
+          db.collection("beat").doc("KickMute").set({
+            active: false,
+            lyd: "på",
+          });
           break;
         case "1":
           this.snareAudio.volume = 1;
+          db.collection("beat").doc("SnareMute").set({
+            active: false,
+            lyd: "på",
+          });
           break;
         case "2":
           this.hihatAudio.volume = 1;
+          db.collection("beat").doc("HihatMute").set({
+            active: false,
+            lyd: "på",
+          });
           break;
       }
     }
   }
-  endreTempo(e) {
-    //henter span-en som vi lagde
-    let tempoTekst = document.querySelector(".tempo-nr");
-    //Setter tempo/bpm til å bli valgt av brukeren.  
+  changeTempo(e) {
+    // let tempoText = document.querySelector(".tempo-nr");
+
+    //henter tempovalue
     this.bpm = e.target.value;
-    //Bytter ut innholdet i span med verdien brukeren velger. 
-    tempoTekst.innerText = e.target.value;
+    // tempoText.innerText = e.target.value;
+     /*db.collection("beat").doc("Tempo").set({
+      Tempo: e.target.value,
+    });*/
+    let besokEl = document.querySelector(".besok"); 
+    /*Lagrer Tempo på localStorage som string med keyvalue "Tempo*/
+    localStorage.setItem("Tempo", this.bpm);
+        /*henter Tempo fra localStorage og gjør den om til Number*/
+    let hentTempo = Number(localStorage.getItem("Tempo"))
+    //legger tempo-tall på nettsiden
+    besokEl.innerHTML = `Din Tempo: ${hentTempo}`
   }
-  oppdaterTempo() {
-    //Resetter alt.
-    //fjerner interval. 
+  updateTempo() {
+    //setter intervall til å være null
     clearInterval(this.isPlaying);
-     //Restarter den igjen, dersom spilleknappen er aktiv. 
-    /* Hvis spilleknappen ikke er aktiv, vil funksjonen ikke starte. det som 
-    oppdateres er bare bpm. */
     this.isPlaying = null;
-    let spilleKnapp = document.querySelector(".spill");
-    //hvis man er i spill. 
-    if (spilleKnapp.classList.contains("active")) {
-      //så vil vi aktivere start-funksjonen igjen. 
-      /* Dette gjør man fordi bpm ovenfor oppdateres ikke. 
-    derfor må vi restarte den, slik at bpm oppdatere. */ 
+    let playBtn = document.querySelector(".play");
+    //hvis playBtn er active, lar vi metoden start() starte hele prosessen
+    if (playBtn.classList.contains("active")) {
       this.start();
     }
   }
 }
-/*
-Kaller den construction funksjonen ved bruk av "new"-operator, slik at
-hver egenskap vi legger til construction-funksjonen blir lagt inn
-som en ny objekt. Dette gjør at coden blir veldig ryddig og pen.
-*/
-const drumkit = new Drumkit();
+
+
+
+
+if (localStorage.antallBesok) {
+  //alt lagres som tekst i localStorage, derfor gjør vi om til tall i dette tilfelle
+  localStorage.antallBesok = Number(localStorage.antallBesok) + 1;
+} else {
+  localStorage.antallBesok = 1;
+}
+
+
+
+
+
+const drumkit = new Drumkit(); //lager en tom objekt, den vil automatisk generere alle objektene og metodene som er laget.
 
 //Her er det samlingen av EventListeners.
+/* Nedenfor lager vi lytter sammen med callback funksjoner
+som igjen starter metodene ovenfor */
 
-drumkit.diver.forEach((pad) => {
+/*Looper over alle divene som har klassen pad.
+aktiverer activePad, som har en toggle på padene/divene.
+aktiverer animasjonens end på padene/divene, slik at 
+den starter på nytt */
+drumkit.pads.forEach((pad) => {
   pad.addEventListener("click", drumkit.activePad);
-  /* Stopper animasjonen vi lagde ovenfor når den er ferdig
-  slik at den starter på nytt */
   pad.addEventListener("animationend", function () {
-    this.style.animation = ""; //This.style.animation refererer til pad som er classen til div-ene
+    //This refererer til paden, som har en lytter 
+    this.style.animation = ""; 
   });
 });
 
-drumkit.spilleKnapp.addEventListener("click", function () {
-  //kaller tilbake funksjonene. (call-back-funksjon)
-  drumkit.oppdaterKnappen();
+/*Lager en lytter for playBtn for å starte metoden start() som starter
+igjen repeat(). 
+vi starter også updateBtn. */
+drumkit.playBtn.addEventListener("click", function () {
+  drumkit.updateBtn();
   drumkit.start();
 });
 
 drumkit.selects.forEach((select) => {
   select.addEventListener("change", function (e) {
-    drumkit.lydEndring(e);
+    /*Grunnen til at vi passerer event (e) til callbak funksjonen 
+    er at vi ønsker å vite hva som blir trukket på...*/
+    drumkit.changeSound(e);
   });
 });
-drumkit.stumKnapp.forEach((btn) => {
+drumkit.muteBtns.forEach((btn) => {
   btn.addEventListener("click", function (e) {
+    /*Samme grunn. eventen, e, er veldig godt egnet for å ha toggle på noe
+    dette bruker vi på muteBtns */
     drumkit.mute(e);
   });
 });
 
-/*Forskjellen mellom å bruke input og change er at hvis man bruker
-input, vil funksjonen aktiveres veldig mange ganger når man f.eks. endrer tempo-slider
-mens change gjør at man verdien etter å ha sluppet tempo-slideren. */
-drumkit.tempoSkyveKnapp.addEventListener("input", function (e) {
-  drumkit.endreTempo(e);
+drumkit.tempoSlider.addEventListener("input", function (e) {
+  drumkit.changeTempo(e);
 });
 
-drumkit.tempoSkyveKnapp.addEventListener("change", function (e) {
-  //change henter verdien etter å ha sluppet tempoSkyveKnapp.
-  drumkit.oppdaterTempo(e);
+drumkit.tempoSlider.addEventListener("change", function (e) {
+  //change henter verdien etter å ha slippet tempoSlider
+  drumkit.updateTempo(e);
 });

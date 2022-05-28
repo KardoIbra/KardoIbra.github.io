@@ -9,9 +9,9 @@
     <title>BeatMaker</title>
   </head>
   <body>
-    <div class="storsteDiv">
-          <h1 class="lagBeat"><b>Lag din egen beat!</b></h1>
-      <div class="forsteSpor">
+    <div class="sequencer">
+          <h1 class="createBeat">Lag din egen beat!</h1>
+      <div class="kick-track">
         <div class="controls">
           <h1>Kick</h1>
           <button data-track="0" class="mute kick-volume">
@@ -20,23 +20,23 @@
           <select name="kick-select" id="kick-select">
             <option value="./sounds/kick-classic.wav">Classic</option>
             <option value="./sounds/kick-cultivator.wav"> Cultivator</option>
-            <option value="./sounds/kick-floppy.wav">Floppy</option>
+            <option value="./sounds/kick-heavy.wav">Heavy</option>
             <option value="./sounds/kick-deep.wav">Deep</option>
             <option value="./sounds/kick-dry.wav">Dry</option>
           </select>
           
         </div>
         <div class="kick"></div>
-        <div class="pad forsteDiver b0"></div>
-        <div class="pad forsteDiver b1"></div>
-        <div class="pad forsteDiver b2"></div>
-        <div class="pad forsteDiver b3"></div>
-        <div class="pad forsteDiver b4"></div>
-        <div class="pad forsteDiver b5"></div>
-        <div class="pad forsteDiver b6"></div>
-        <div class="pad forsteDiver b7"></div>
+        <div class="pad kick-pad b0"></div>
+        <div class="pad kick-pad b1"></div>
+        <div class="pad kick-pad b2"></div>
+        <div class="pad kick-pad b3"></div>
+        <div class="pad kick-pad b4"></div>
+        <div class="pad kick-pad b5"></div>
+        <div class="pad kick-pad b6"></div>
+        <div class="pad kick-pad b7"></div>
       </div>
-      <div class="andreSpor">
+      <div class="snare-track">
         <div class="controls">
           <h1>Snare</h1>
           <button data-track="1" class="mute snare-volume">
@@ -50,16 +50,16 @@
           </select>
         </div>
         <div class="snare"></div>
-        <div class="pad andreDiver b0"></div>
-        <div class="pad andreDiver b1"></div>
-        <div class="pad andreDiver b2"></div>
-        <div class="pad andreDiver b3"></div>
-        <div class="pad andreDiver b4"></div>
-        <div class="pad andreDiver b5"></div>
-        <div class="pad andreDiver b6"></div>
-        <div class="pad andreDiver b7"></div>
+        <div class="pad snare-pad b0"></div>
+        <div class="pad snare-pad b1"></div>
+        <div class="pad snare-pad b2"></div>
+        <div class="pad snare-pad b3"></div>
+        <div class="pad snare-pad b4"></div>
+        <div class="pad snare-pad b5"></div>
+        <div class="pad snare-pad b6"></div>
+        <div class="pad snare-pad b7"></div>
       </div>
-      <div class="tredjeSpor">
+      <div class="hihat-track">
         <div class="controls">
           <h1>Hihat</h1>
           <button data-track="2" class="mute hihat-volume">
@@ -70,30 +70,42 @@
             <option value="./sounds/hihat-analog.wav">Analog</option>
             <option value="./sounds/hihat-plain.wav">Plain</option>
             <option value="./sounds/hihat-reso.wav">Reso</option>
-            <option value="./sounds/hihat-ring.wav">Plain</option>
+            <option value="./sounds/hihat-ring.wav">Ring</option>
           </select>
         </div>
         <div class="hihat"></div>
-        <div class="pad tredjeDiver b0"></div>
-        <div class="pad tredjeDiver b1"></div>
-        <div class="pad tredjeDiver b2"></div>
-        <div class="pad tredjeDiver b3"></div>
-        <div class="pad tredjeDiver b4"></div>
-        <div class="pad tredjeDiver b5"></div>
-        <div class="pad tredjeDiver b6"></div>
-        <div class="pad tredjeDiver b7"></div>
+        <div class="pad hihat-pad b0"></div>
+        <div class="pad hihat-pad b1"></div>
+        <div class="pad hihat-pad b2"></div>
+        <div class="pad hihat-pad b3"></div>
+        <div class="pad hihat-pad b4"></div>
+        <div class="pad hihat-pad b5"></div>
+        <div class="pad hihat-pad b6"></div>
+        <div class="pad hihat-pad b7"></div>
       </div>
-      <button class="spill">Spill</button>
+      <button class="play">Spill</button>
       <div class="tempo">
             <input type="range" class="tempo-slider" max="300" min="20" value="150">
-            <p>Tempo: <span class="tempo-nr">150</span></p>
+            <!-- <p>Tempo: <span class="tempo-nr">150</span></p> -->
+            <!-- <button class="getData">Hent data</button> -->
+            <h3 class="besok"></h3>
       </div>  
     </div>
+    <!-- Souren til lydene er satt som defualt -->
     <audio class="kick-sound" src="./sounds/kick-classic.wav"></audio>
     <audio class="snare-sound" src="./sounds/snare-acoustic01.wav"></audio>
     <audio class="hihat-sound" src="./sounds/hihat-acoustic01.wav"></audio>
 
-        <!-- Vi kunne også legge til denne scripten på head. vil Fungere uten problem. -->
+
+    
+     <!-- Her kommer HTML-koden vår -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js"></script>
+
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"
       integrity="sha512-xd+EFQjacRjTkapQNqqRNk8M/7kaek9rFqYMsbpEhTLdzq/3mgXXRXaz1u5rnYFH5mQ9cEZQjGFHFdrJX2CilA=="
