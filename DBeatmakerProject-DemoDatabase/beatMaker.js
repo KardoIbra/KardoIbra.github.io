@@ -11,7 +11,6 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-// Lager en referanse til databasen. En måte hvilke variabel jeg skal bruke når jeg skal ta tak i
 let db = firebase.firestore();
 
 class Drumkit {
@@ -279,8 +278,8 @@ if (localStorage.antallBesok) {
 
 
 
-
-const drumkit = new Drumkit(); //lager en tom objekt, den vil automatisk generere alle objektene og metodene som er laget.
+//lager en tom objekt, den vil automatisk generere alle objektene og metodene som er laget.
+const drumkit = new Drumkit(); 
 
 //Her er det samlingen av EventListeners.
 /* Nedenfor lager vi lytter sammen med callback funksjoner
